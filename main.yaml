@@ -2,7 +2,7 @@
   hosts: localhost
   vars:
     gcp_project: pulumi-367411
-    gcp_cred_kind: serviceaccont
+    gcp_cred_kind: serviceaccount
   tasks:
     - name: create a disk mapped from Debain image
       gcp_compute_disk:
