@@ -1,0 +1,27 @@
+- name: Create a GCP Instance
+  hosts: localhost
+  vars:
+    gcp_project: pulumi-367411
+    gcp_cred_kind: serviceaccont
+  tasks:
+    - name: create a disk mapped from Debain image
+      gcp_compute_disk:
+        name: disk-instance
+        size_gb: 10
+        source_image: projects/debian-cloud/global/images/debian-11-bullseye-v20221102
+        zone: us-central1-a
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
+        state: present
+      register: disk
+    - name: create the Ubuntu instance
+      gcp_compute_instance:
+        name: rhel8
+        machine_type: e2-micro
+        disks:
+        - auto_delete: 'true'
+          boot: 'true'
+          source: "{{ disk }}"
+        zone: us-central1-a
+        project: "{{ gcp_project }}"
+        auth_kind: "{{ gcp_cred_kind }}"
