@@ -1,0 +1,9 @@
+- name: Get the Disk Details for the Instance
+  gcp_compute_disk_info:
+    zone: us-central1-a
+    filters:
+    - name: rhel8
+    project: "{{ gcp_project }}"
+    auth_kind: "{{ gcp_cred_kind }}"
+  register: diskname
+
