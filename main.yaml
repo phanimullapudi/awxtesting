@@ -47,3 +47,11 @@
         zone: us-central1-a
         project: "{{ gcp_project }}"
         auth_kind: "{{ gcp_cred_kind }}"
+    - name: Enable OpsAgent
+      roles:
+        - role: googlecloudplatform.google_cloud_ops_agents
+          vars:
+            agent_type: monitoring
+        - role: googlecloudplatform.google_cloud_ops_agents
+          vars:
+            agent_type: logging
