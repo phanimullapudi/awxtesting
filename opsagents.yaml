@@ -1,5 +1,5 @@
 # Installing the Monitoring and Logging agents
-- hosts: all
+- hosts: localhost
   become: true
   roles:
     - role: googlecloudplatform.google_cloud_ops_agents
